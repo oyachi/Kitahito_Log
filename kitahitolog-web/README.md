@@ -1,1 +1,1 @@
-# kitahitolog-local
+# kitahitolog-web
