@@ -1,0 +1,27 @@
+.qr_view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button_area {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    width: 100%;
+}
+
+.button {
+    border-radius: 5px;
+    width: 60%;
+}
+
+.fade {
+    animation: fadeIn 1s ease 0.0s 1 normal;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
