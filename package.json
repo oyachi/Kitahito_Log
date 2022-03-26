@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -11,6 +14,7 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
+    "@types/styled-components": "^5.1.24",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.28.1",
@@ -25,9 +29,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext ./src/**/*.{tsx,ts}",
+    "lint": "eslint --fix ./src/**/*.{tsx,ts}",
     "fmt": "prettier --write ./src/**/*.{tsx,ts}",
-    "fix": "eslint --ext ./src/**/*.{tsx,ts} && prettier --write ./src/**/*.{tsx,ts}"
+    "fix": "eslint --fix ./src/**/*.{tsx,ts} && prettier --write ./src/**/*.{tsx,ts}"
   },
   "browserslist": {
     "production": [
