@@ -36,6 +36,11 @@ export const lightTheme = {
   },
   form: {
     main: '#fff'
+  },
+  typography: {
+    button: {
+        textTransform: "none"
+    }
   }
 };
 
@@ -56,5 +61,10 @@ export const darkTheme = {
   },
   form: {
     main: '#253148'
+  },
+  typography: {
+    button: {
+        textTransform: "none"
+    }
   }
 };
