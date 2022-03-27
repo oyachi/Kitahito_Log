@@ -4,8 +4,12 @@ import { MenuItem, TextField, Button, useTheme } from '@mui/material';
 /* styles */
 import styles from '../styles/FormArea.module.css';
 import { styled } from '@mui/material/styles';
+/* components */
+import BottomPopover from './BottomPopover';
+/* modules */
+const Encoding = require('encoding-japanese');
 
-/* style */
+/* styling */
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-input': {
     color: theme.palette.text.primary // 入力文字の色
@@ -52,7 +56,14 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const visitorInfo = data.grade + ',' + data.department + ',' + data.number + ',' + data.name;
-    updateVisitor(visitorInfo);
+    // encoding
+    const codeArray = Encoding.stringToCode(visitorInfo);
+    const utfArray = Encoding.convert(codeArray, {
+        to: 'UTF8',
+        from: Encoding.detect(codeArray)
+    })
+
+    updateVisitor(Encoding.codeToString(utfArray));
   };
 
   return (
@@ -129,9 +140,14 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
 
         <div className={styles.button_area}>
           <Button type="submit" variant="contained" color="primary" size="large" className={styles.button}>
-            入場券を発行する
+            QRコードを生成する
           </Button>
         </div>
+
+        <div className={styles.buttom_popover}>
+            <BottomPopover />
+        </div>
+        
       </form>
     </div>
   );
