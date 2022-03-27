@@ -21,7 +21,7 @@ interface Props {
 }
 
 const CustomThemeProvider: React.VFC<Props> = ({ children }) => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const [mode, setMode] = useState<'light' | 'dark'>('dark');
 
   const colorMode = useMemo(
     () => ({
