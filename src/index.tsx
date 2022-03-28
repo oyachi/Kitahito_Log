@@ -17,4 +17,4 @@ ReactDOM.render(
 reportWebVitals();
 
 // scroll off
-document.addEventListener('touchmove', function(e) {e.preventDefault();}, {passive: false});
+// document.addEventListener('touchmove', function(e) {e.preventDefault();}, {passive: false});
