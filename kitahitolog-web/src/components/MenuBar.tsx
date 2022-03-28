@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material';
 /* components */
 import ToggleColorModeButton from './ToggleColorModeButton';
 
-const MenuBar: React.FC = () => {
+const MenuBar: React.VFC = () => {
   const theme = useTheme();
   return (
     <Box sx={{ flexGrow: 1 }}>
