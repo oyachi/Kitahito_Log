@@ -23,7 +23,7 @@ const QRViewer: React.VFC<Props> = ({ str, reinput }) => {
       </div>
 
       <div className={styles.typography}>
-        <Typography sx={{ p: 1, fontSize: '12px' }} color="primary" className={animation.flash}>
+        <Typography sx={{ p: 1, fontSize: '11px' }} color="primary" className={animation.flash}>
           初回入場時に会場入口のリーダーにかざしてください
         </Typography>
       </div>
