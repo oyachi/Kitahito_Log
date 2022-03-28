@@ -1,30 +1,34 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 import { MenuItem, TextField, Button, useTheme } from '@mui/material';
 /* styles */
 import styles from '../styles/FormArea.module.css';
 import { styled } from '@mui/material/styles';
+/* animation */
+import animations from "../animation/animation.module.css"
 /* components */
 import BottomPopover from './BottomPopover';
 /* modules */
 const Encoding = require('encoding-japanese');
 
+
 /* styling */
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-input': {
-    color: theme.palette.text.primary // 入力文字の色
+    color: theme.palette.text.primary 
   },
   '& label': {
-    color: theme.palette.text.primary // 通常時のラベル色
+    color: theme.palette.text.primary 
   },
   '& label.Mui-focused': {
     color: theme.palette.text.primary
   },
   '& .MuiInput-underline:before': {
-    borderBottomColor: theme.palette.divider // 通常時のボーダー色
+    borderBottomColor: theme.palette.divider 
   },
   '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderBottomColor: theme.palette.divider // ホバー時のボーダー色
+    borderBottomColor: theme.palette.divider
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: theme.palette.divider
@@ -55,9 +59,12 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const visitorInfo = data.grade + ',' + data.department + ',' + data.number + ',' + data.name;
+    const number = data.number.replace(/[,\n\s]+/,"")
+    const name = data.name.replace(/[,\n\s]+/,"")
+
+    const visitorInfo = "kthtl," + data.grade + ',' + data.department + ',' + number + ',' + name;
     // encoding
-    const codeArray = Encoding.stringToCode(visitorInfo);
+    const codeArray = Encoding.stringToCode(visitorInfo)
     const utfArray = Encoding.convert(codeArray, {
         to: 'UTF8',
         from: Encoding.detect(codeArray)
@@ -67,7 +74,7 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
   };
 
   return (
-    <div className={`${styles.fade} ${styles.form_view}`}>
+    <div className={`${styles.form_view} ${animations.fadeUp}`}>
       <h1 className={styles.form_title}>入場者情報</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input_area}>
@@ -116,24 +123,36 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
 
         <div className={styles.input_area}>
           <StyledTextField
-            type="text"
-            {...register('number', { required: true })}
+            type="input"
+            {...register('number', 
+            { required: "*学籍番号を入力してください",
+              pattern: {
+                  value: /[^,\n\s]+/,
+                  message: " *カンマ及びスペースを含めないでください"
+              }
+            }, )}
             fullWidth
             className={styles.input}
             label="学籍番号"
-            helperText={errors.number && <span className={styles.form_label_span}> *学籍番号を入力してください</span>}
+            helperText={errors.number && <span className={styles.form_label_span}><ErrorMessage errors={errors} name="number"/></span>}
             variant={theme.palette.mode === 'light' ? 'outlined' : 'filled'}
           />
         </div>
 
         <div className={styles.input_area}>
           <StyledTextField
-            type="text"
-            {...register('name', { required: true })}
+            type="input"
+            {...register('name', 
+            { required: "*氏名を入力してください",
+              pattern: {
+                  value: /[^,\n\s]+/,
+                  message: " *カンマ及びスペースを含めないでください"
+              }
+            }, )}
             fullWidth
             className={styles.input}
             label="氏名"
-            helperText={errors.name && <span className={styles.form_label_span}> *氏名を入力してください</span>}
+            helperText={errors.name && <span className={styles.form_label_span}><ErrorMessage errors={errors} name="name"/></span>}
             variant={theme.palette.mode === 'light' ? 'outlined' : 'filled'}
           />
         </div>
