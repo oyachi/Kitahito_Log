@@ -6,26 +6,25 @@ import { MenuItem, TextField, Button, useTheme } from '@mui/material';
 import styles from '../styles/FormArea.module.css';
 import { styled } from '@mui/material/styles';
 /* animation */
-import animations from "../animation/animation.module.css"
+import animations from '../animation/animation.module.css';
 /* components */
 import BottomPopover from './BottomPopover';
 /* modules */
 const Encoding = require('encoding-japanese');
 
-
 /* styling */
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-input': {
-    color: theme.palette.text.primary 
+    color: theme.palette.text.primary
   },
   '& label': {
-    color: theme.palette.text.primary 
+    color: theme.palette.text.primary
   },
   '& label.Mui-focused': {
     color: theme.palette.text.primary
   },
   '& .MuiInput-underline:before': {
-    borderBottomColor: theme.palette.divider 
+    borderBottomColor: theme.palette.divider
   },
   '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
     borderBottomColor: theme.palette.divider
@@ -59,16 +58,16 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const number = data.number.replace(/[,\n\s]+/,"")
-    const name = data.name.replace(/[,\n\s]+/,"")
+    const number = data.number.replace(/[,\n\s]+/, '');
+    const name = data.name.replace(/[,\n\s]+/, '');
 
-    const visitorInfo = "kthtl," + data.grade + ',' + data.department + ',' + number + ',' + name;
+    const visitorInfo = 'kthtl,' + data.grade + ',' + data.department + ',' + number + ',' + name;
     // encoding
-    const codeArray = Encoding.stringToCode(visitorInfo)
+    const codeArray = Encoding.stringToCode(visitorInfo);
     const utfArray = Encoding.convert(codeArray, {
-        to: 'UTF8',
-        from: Encoding.detect(codeArray)
-    })
+      to: 'UTF8',
+      from: Encoding.detect(codeArray)
+    });
 
     updateVisitor(Encoding.codeToString(utfArray));
   };
@@ -124,17 +123,23 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
         <div className={styles.input_area}>
           <StyledTextField
             type="input"
-            {...register('number', 
-            { required: "*学籍番号を入力してください",
+            {...register('number', {
+              required: '*学籍番号を入力してください',
               pattern: {
-                  value: /[^,\n\s]+/,
-                  message: " *カンマ及びスペースを含めないでください"
+                value: /[^,\n\s]+/,
+                message: ' *カンマ及びスペースを含めないでください'
               }
-            }, )}
+            })}
             fullWidth
             className={styles.input}
             label="学籍番号"
-            helperText={errors.number && <span className={styles.form_label_span}><ErrorMessage errors={errors} name="number"/></span>}
+            helperText={
+              errors.number && (
+                <span className={styles.form_label_span}>
+                  <ErrorMessage errors={errors} name="number" />
+                </span>
+              )
+            }
             variant={theme.palette.mode === 'light' ? 'outlined' : 'filled'}
           />
         </div>
@@ -142,17 +147,23 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
         <div className={styles.input_area}>
           <StyledTextField
             type="input"
-            {...register('name', 
-            { required: "*氏名を入力してください",
+            {...register('name', {
+              required: '*氏名を入力してください',
               pattern: {
-                  value: /[^,\n\s]+/,
-                  message: " *カンマ及びスペースを含めないでください"
+                value: /[^,\n\s]+/,
+                message: ' *カンマ及びスペースを含めないでください'
               }
-            }, )}
+            })}
             fullWidth
             className={styles.input}
             label="氏名"
-            helperText={errors.name && <span className={styles.form_label_span}><ErrorMessage errors={errors} name="name"/></span>}
+            helperText={
+              errors.name && (
+                <span className={styles.form_label_span}>
+                  <ErrorMessage errors={errors} name="name" />
+                </span>
+              )
+            }
             variant={theme.palette.mode === 'light' ? 'outlined' : 'filled'}
           />
         </div>
@@ -164,9 +175,8 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
         </div>
 
         <div className={styles.buttom_popover}>
-            <BottomPopover />
+          <BottomPopover />
         </div>
-        
       </form>
     </div>
   );

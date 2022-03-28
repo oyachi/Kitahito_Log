@@ -39,7 +39,7 @@ export const lightTheme = {
   },
   typography: {
     button: {
-        textTransform: "none"
+      textTransform: 'none'
     }
   }
 };
@@ -64,7 +64,7 @@ export const darkTheme = {
   },
   typography: {
     button: {
-        textTransform: "none"
+      textTransform: 'none'
     }
   }
 };
