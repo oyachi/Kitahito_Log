@@ -58,8 +58,8 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const number = data.number.replace(/[,\n\s]+/, '');
-    const name = data.name.replace(/[,\n\s]+/, '');
+    const number = data.number.replace(/[,\n\s]+/g, '');
+    const name = data.name.replace(/[,\n\s]+/g, '');
 
     const visitorInfo = 'kthtl,' + data.grade + ',' + data.department + ',' + number + ',' + name;
     // encoding
@@ -126,8 +126,12 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
             {...register('number', {
               required: '*学籍番号を入力してください',
               pattern: {
-                value: /[^,\n\s]+/,
-                message: ' *カンマ及びスペースを含めないでください'
+                value: /[^,\n\s]+/g,
+                message: '*カンマ及びスペースを含めないでください'
+              },
+              maxLength: {
+                  value: 30,
+                  message: '最大文字数は30文字です'
               }
             })}
             fullWidth
@@ -150,9 +154,13 @@ const FormArea: React.VFC<Props> = ({ updateVisitor }) => {
             {...register('name', {
               required: '*氏名を入力してください',
               pattern: {
-                value: /[^,\n\s]+/,
-                message: ' *カンマ及びスペースを含めないでください'
-              }
+                value: /[^,\n\s]+/g,
+                message: '*カンマ及びスペースを含めないでください'
+              },
+              maxLength: {
+                value: 30,
+                message: '最大文字数は30文字です'
+            }
             })}
             fullWidth
             className={styles.input}
