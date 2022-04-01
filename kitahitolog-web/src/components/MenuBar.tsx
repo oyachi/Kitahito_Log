@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material';
 /* components */
 import ToggleColorModeButton from './ToggleColorModeButton';
+import Logo from "./Logo"
 
 const MenuBar: React.VFC = () => {
   const theme = useTheme();
@@ -14,6 +15,8 @@ const MenuBar: React.VFC = () => {
       <AppBar sx={{ bgcolor: theme.palette.appbar.main }} position="static">
         <Toolbar>
           <ToggleColorModeButton />
+          <div style={{flexGrow: 1}}></div>
+          <Logo mode={theme.palette.mode}/>
         </Toolbar>
       </AppBar>
     </Box>
