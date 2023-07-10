@@ -17,7 +17,7 @@
 
 ### URL
 
-https://kitahitolog.herokuapp.com/
+https://oyachi.github.io/Kitahito_Log/
 
 ### QRCode
 
