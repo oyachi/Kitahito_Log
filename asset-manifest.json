@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Kitahito_Log/static/css/main.9df69398.css",
+    "main.js": "/Kitahito_Log/static/js/main.20efdad2.js",
+    "static/js/787.1e021ae0.chunk.js": "/Kitahito_Log/static/js/787.1e021ae0.chunk.js",
+    "index.html": "/Kitahito_Log/index.html",
+    "main.9df69398.css.map": "/Kitahito_Log/static/css/main.9df69398.css.map",
+    "main.20efdad2.js.map": "/Kitahito_Log/static/js/main.20efdad2.js.map",
+    "787.1e021ae0.chunk.js.map": "/Kitahito_Log/static/js/787.1e021ae0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9df69398.css",
+    "static/js/main.20efdad2.js"
+  ]
+}
